@@ -1,5 +1,5 @@
 #include<iostream>
-#include "bmstu_string.h"
+#include "bmstu_basic_string.h"
 #include <string>
 
 int main()
