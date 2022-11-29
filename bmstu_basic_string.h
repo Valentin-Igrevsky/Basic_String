@@ -1,31 +1,45 @@
-#ifndef FIRST_BMSTU_STRING_H
-#define FIRST_BMSTU_STRING_H
+#pragma once
 
 #include <iostream>
 
 /// Пространство имен "bmstu"
 namespace bmstu {
+    template<class T>
+    class basic_string;
+
+    using string = bmstu::basic_string<char>;
+    using wstring = bmstu::basic_string<wchar_t>;
+
     /// Создание класса "string"
-    template <typename T>
-    class string {
+    template<class T>
+    class basic_string {
     public:
         /// Конструктор по умолчанию
-        string() {
+        basic_string() {
             ptr_ = new T[1];
-            *ptr_ = '\0';
+            *ptr_ = static_cast<T>('\0');
             size_ = 0;
         }
 
+        basic_string(size_t num) {
+            ptr_ = new T[num + 1];
+            for (size_t i = 0; i < num; i++) {
+                ptr_[i] = static_cast<T>(' ');
+            }
+            ptr_[num] = static_cast<T>('\0');
+            size_ = num;
+        }
+
         /// Конструктор с параметрами
-        string(const T *c_str) {
+        basic_string(const T *c_str) {
             size_ = strlen_(c_str);
             if (size_ == 0) {
                 ptr_ = new T[1];
-                *ptr_ = '\0';
+                *ptr_ = static_cast<T>('\0');
                 size_ = 0;
             } else {
                 ptr_ = new T[size_ + 1];
-                ptr_[size_] = '\0';
+                ptr_[size_] = static_cast<T>('\0');
 
                 for (size_t c = 0; c < size_; c++) {
                     ptr_[c] = c_str[c];
@@ -34,7 +48,7 @@ namespace bmstu {
         }
 
         /// Оператор копирующего присваивания для строк класса bmstu::string с помощью скобок
-        string(const string &other) {
+        basic_string(const basic_string<T> &other) {
             if (this != &other) {
                 clean_();
                 size_ = other.size_;
@@ -47,7 +61,7 @@ namespace bmstu {
         }
 
         /// Конструктор через массив char
-        string(std::initializer_list<T> il)  : ptr_(new T[il.size() + 1]) {
+        basic_string(std::initializer_list<T> il) : ptr_(new T[il.size() + 1]) {
             ptr_[il.size()] = 0;
             size_ = il.size();
             for (size_t i = 0; i < il.size(); i++) {
@@ -56,7 +70,7 @@ namespace bmstu {
         }
 
         /// Оператор копирующего присваивания (=) - Работает со строками класса bmstu::string
-        string &operator=(const string &other) {
+        basic_string &operator=(const basic_string<T> &other) {
             if (this != &other) {
                 clean_();
                 size_ = other.size_;
@@ -70,19 +84,18 @@ namespace bmstu {
         }
 
         /// Оператор перемещающего присваивания
-        string &operator=(string &&other) {
+        basic_string &operator=(basic_string<T> &&other) {
             if (this != &other) {
                 clean_();
                 ptr_ = other.ptr_;
                 size_ = other.size_;
-                other.ptr_ = nullptr;
-                other.size_ = 0;
+                other.moved_();
             }
             return *this;
         }
 
         /// Оператор присваивания (=) - Работает со C-строками (char *str)
-        string &operator=(const T *c_str) {
+        basic_string &operator=(const T *c_str) {
             clean_();
             size_ = strlen_(c_str);
             ptr_ = new T[size_ + 1];
@@ -94,22 +107,21 @@ namespace bmstu {
         }
 
         /// Перемещающий конструктор
-        string(string &&dying) {
+        basic_string(basic_string<T> &&dying) {
             clean_();
             ptr_ = dying.ptr_;
             size_ = dying.size_;
-            dying.ptr_ = nullptr;
-            dying.size_ = 0;
+            dying.moved_();
         }
 
         /// Деконструктор - медор, удаляющий элемент класса после завершения работы с ним
-        ~string() {
+        ~basic_string() {
             delete[] ptr_;
         }
 
         /// Метод, возвращающий строку (Геттер на C-строку)
         const T *c_str() const {
-            return ptr_;
+            return static_cast<const T *>(ptr_);
         }
 
         /// Метод, возвращающий размер (Геттер на размер)
@@ -117,12 +129,8 @@ namespace bmstu {
             return size_;
         }
 
-        auto begin() {
-            return *ptr_;
-        }
-
         /// Прибавление к строке класса bmstu::string другой строки этого же класса
-        string &operator+=(const string &other) {
+        basic_string<T> &operator+=(const basic_string<T> &other) {
             size_t new_size = size_ + other.size_;
             auto new_ptr = new T[new_size + 1];
             for (size_t i = 0; i < size_; i++) {
@@ -141,7 +149,7 @@ namespace bmstu {
         }
 
         /// Прибавление к строке класса bmstu::string другой C-строки
-        string &operator+=(const T *str) {
+        basic_string<T> &operator+=(const T *str) {
             size_t strlen = strlen_(str);
             size_t new_size = size_ + strlen;
             auto new_ptr = new T[new_size + 1];
@@ -161,14 +169,14 @@ namespace bmstu {
         }
 
         /// Прибавление к строке класса bmstu::string символа char
-        string &operator+=(const T symbol) {
+        basic_string<T> &operator+=(const T symbol) {
             size_t new_size = size_ + 1;
             auto new_ptr = new T[new_size + 1];
             for (size_t i = 0; i < size_; i++) {
                 new_ptr[i] = ptr_[i];
             }
 
-            new_ptr[new_size-1] = symbol;
+            new_ptr[new_size - 1] = symbol;
             new_ptr[new_size] = 0;
             clean_();
             ptr_ = new_ptr;
@@ -184,28 +192,28 @@ namespace bmstu {
             throw std::runtime_error("Wrong index " + std::to_string(index));
         }
 
-
-
         /// Опетатор конкатенации (сложения) двух строк
-        friend bmstu::string<T> operator+(const string &left, const string &right) {
-            bmstu::string<T> result(left);
+        friend bmstu::basic_string<T> operator+(const basic_string<T> &left, const basic_string<T> &right) {
+            bmstu::basic_string<T> result(left);
             result += right;
             return result;
         }
 
         /// Оператор передачи строки в топок
-        friend std::ostream &operator<<(std::ostream &os, const string &obj) {
+        template <class S>
+        friend S &operator<<(S &os, const basic_string<T> &obj) {
             os << obj.c_str();
             return os;
         }
 
         /// Оператор получения строки из потока
-        friend std::istream &operator>>(std::istream &is, string &obj) {
-            bmstu::string<T> result;
-            T buf;
+        template <class S>
+        friend S &operator>>(S &is, basic_string<T> &obj) {
+            bmstu::basic_string<T> result;
+            T buf = ' ';
             while (is.good()) {
-                is.get(buf);
-                if (buf == '\n') {
+                buf = is.get();
+                if (buf == -1) {
                     break;
                 }
                 result += buf;
@@ -237,7 +245,12 @@ namespace bmstu {
 
         T *ptr_ = nullptr;
         size_t size_;
-    };
-}
 
-#endif //FIRST_BMSTU_STRING_H
+        void moved_() {
+            ptr_ = new T[1];
+            *ptr_ = static_cast<T>('\0');
+            size_ = 0;
+        }
+    };
+
+}
