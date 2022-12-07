@@ -1,3 +1,6 @@
+# Полезный репозиторий от Платона: [Click](https://github.com/plutskiy/Proga)
+# Задания работ: [Click](https://disk.yandex.ru/d/GIUrX1R5PdYmcA)
+# Примеры решения: 
 1. bmstu_basic_string.h
   > Самописная шаблонная строка (Зачтено)
 2. example_test.cpp
@@ -12,5 +15,5 @@
   > Летучка №6 (Зачтено)
 7. let_7.cpp
   > Летучка №7 (Зачтено)
-8. https://github.com/plutskiy/Proga
-  > Полезный репозиторий от Платона
+8. let_8.cpp
+  > Летучка №8 (На проверке)
