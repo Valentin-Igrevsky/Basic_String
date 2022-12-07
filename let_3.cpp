@@ -36,8 +36,9 @@ long long int hex2dec(const char *str) {
     return (is_negative) ? result * -1 + version : result + version;
 }
 
-int mainFunc(int argc, char **argv) {
+int mainFunc3(int argc, char **argv) {
     for (int count = argc - 1; count > 0; --count) {
         std::cout << hex2dec(argv[count]) << '\n';
     }
+    return 0;
 }

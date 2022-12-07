@@ -29,7 +29,7 @@ private:
     std::string name;
 };
 
-int mainFunc(int argc, char **argv) {
+int mainFunc8(int argc, char **argv) {
     if (argc != 2) {
         exit(-1);
     }
@@ -66,4 +66,5 @@ int mainFunc(int argc, char **argv) {
     } else {
         exit(-1);
     }
+    return 0;
 }

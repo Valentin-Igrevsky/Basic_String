@@ -11,7 +11,7 @@ void getXML(int id, double weight, bool is_broken, double price) {
                 (is_broken) ? "true" : "false", price);
 }
 
-int mainFunc() {
+int mainFunc4() {
     uint64_t counter;
     std::cin >> counter;
 

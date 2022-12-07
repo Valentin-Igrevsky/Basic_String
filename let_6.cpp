@@ -2,7 +2,7 @@
 #include <string>
 
 
-int mainFunc() {
+int mainFunc6() {
     const std::string symbols = "1234567890AaBbCcDdEeFfGgHgXxYyZz";
     size_t str_len = symbols.length();
     for (int i = 0; i < str_len; ++i) {

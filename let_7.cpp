@@ -58,7 +58,7 @@ std::string *palindrome_searcher(const std::string &file, size_t &count) {
     return palindromes;
 }
 
-int mainFunc(int argc, char *argv[]) {
+int mainFunc7(int argc, char *argv[]) {
     if (argc > 2) {
         exit(-1);
     }

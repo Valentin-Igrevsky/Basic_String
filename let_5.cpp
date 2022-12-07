@@ -18,7 +18,7 @@ struct Factorial<1> {
 template<size_t T>
 struct _factorial_is_;
 
-int mainFunc() {
+int mainFunc5() {
     _factorial_is_<Factorial<10>::result>__;
     return 0;
 }

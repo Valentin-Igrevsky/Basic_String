@@ -3,4 +3,4 @@ project(Tests)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Tests main.cpp let_3.cpp let_4.cpp let_5.cpp let_6.cpp let_7.cpp)
+add_executable(Tests let_3.cpp let_4.cpp let_5.cpp let_6.cpp let_7.cpp let_8.cpp)
