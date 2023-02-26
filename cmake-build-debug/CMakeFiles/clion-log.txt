@@ -1,4 +1,0 @@
-/home/vali/Desktop/Clion/clion-2022.2.4/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/vali/Desktop/Clion/clion-2022.2.4/bin/ninja/linux/ninja -G Ninja -S /home/vali/CLionProjects/Basic_String -B /home/vali/CLionProjects/Basic_String/cmake-build-debug
--- Configuring done
--- Generating done
--- Build files have been written to: /home/vali/CLionProjects/Basic_String/cmake-build-debug

@@ -1,7 +1,0 @@
-# ninja log v5
-0	396	1669324655444714303	CMakeFiles/Tests.dir/main.cpp.o	47ef22ea6934306a
-397	798	1669324655840912316	CMakeFiles/Tests.dir/let_3.cpp.o	b9f56b25741d6334
-798	1187	1669324656233108327	CMakeFiles/Tests.dir/let_4.cpp.o	5d44d14a429c486e
-0	25	1677407935938400292	build.ninja	a68fad4dab67fc6c
-0	315	1677407936262408561	CMakeFiles/Tests.dir/Let_I/let_3.cpp.o	bbecdb4d7398836a
-315	492	1677407936438412977	CMakeFiles/Tests.dir/Let_I/let_4.cpp.o	d4ca812756bf2c27

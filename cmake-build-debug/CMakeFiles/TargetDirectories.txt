@@ -1,3 +1,0 @@
-/home/vali/CLionProjects/Basic_String/cmake-build-debug/CMakeFiles/Tests.dir
-/home/vali/CLionProjects/Basic_String/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/vali/CLionProjects/Basic_String/cmake-build-debug/CMakeFiles/rebuild_cache.dir
