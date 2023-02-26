@@ -85,11 +85,11 @@ build CMakeFiles/Tests.dir/Let_I/let_8.cpp.o: CXX_COMPILER__Tests_Debug /home/va
   OBJECT_DIR = CMakeFiles/Tests.dir
   OBJECT_FILE_DIR = CMakeFiles/Tests.dir/Let_I
 
-build CMakeFiles/Tests.dir/let_2.0.cpp.o: CXX_COMPILER__Tests_Debug /home/vali/CLionProjects/Basic_String/let_2.0.cpp || cmake_object_order_depends_target_Tests
-  DEP_FILE = CMakeFiles/Tests.dir/let_2.0.cpp.o.d
+build CMakeFiles/Tests.dir/Let_II/let_2.0.cpp.o: CXX_COMPILER__Tests_Debug /home/vali/CLionProjects/Basic_String/Let$ II/let_2.0.cpp || cmake_object_order_depends_target_Tests
+  DEP_FILE = CMakeFiles/Tests.dir/Let_II/let_2.0.cpp.o.d
   FLAGS = -g -std=gnu++14
   OBJECT_DIR = CMakeFiles/Tests.dir
-  OBJECT_FILE_DIR = CMakeFiles/Tests.dir
+  OBJECT_FILE_DIR = CMakeFiles/Tests.dir/Let_II
 
 
 # =============================================================================
@@ -99,7 +99,7 @@ build CMakeFiles/Tests.dir/let_2.0.cpp.o: CXX_COMPILER__Tests_Debug /home/vali/C
 #############################################
 # Link the executable Tests
 
-build Tests: CXX_EXECUTABLE_LINKER__Tests_Debug CMakeFiles/Tests.dir/Let_I/let_3.cpp.o CMakeFiles/Tests.dir/Let_I/let_4.cpp.o CMakeFiles/Tests.dir/Let_I/let_5.cpp.o CMakeFiles/Tests.dir/Let_I/let_6.cpp.o CMakeFiles/Tests.dir/Let_I/let_7.cpp.o CMakeFiles/Tests.dir/Let_I/let_8.cpp.o CMakeFiles/Tests.dir/let_2.0.cpp.o
+build Tests: CXX_EXECUTABLE_LINKER__Tests_Debug CMakeFiles/Tests.dir/Let_I/let_3.cpp.o CMakeFiles/Tests.dir/Let_I/let_4.cpp.o CMakeFiles/Tests.dir/Let_I/let_5.cpp.o CMakeFiles/Tests.dir/Let_I/let_6.cpp.o CMakeFiles/Tests.dir/Let_I/let_7.cpp.o CMakeFiles/Tests.dir/Let_I/let_8.cpp.o CMakeFiles/Tests.dir/Let_II/let_2.0.cpp.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/Tests.dir
   POST_BUILD = :
