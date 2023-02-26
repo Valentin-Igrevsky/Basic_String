@@ -1,5 +1,8 @@
 # Полезный репозиторий от Платона: [Click](https://github.com/plutskiy/Proga)
-# Задания работ: [Click](https://disk.yandex.ru/d/GIUrX1R5PdYmcA)
+# Задания работ: 
+>[I Семестр](https://disk.yandex.ru/d/GIUrX1R5PdYmcA)
+> 
+>[II Семестр](https://disk.yandex.ru/d/9RyFMc8LquxR-A)
 # Примеры решения: 
 
 1. Лечутки I семестр

@@ -3,7 +3,6 @@
 #include <fstream>
 #include <cmath>
 
-
 bool is_perfect(uint64_t &num) {
     size_t numC;
     bool c_flag;
@@ -26,7 +25,7 @@ bool is_perfect(uint64_t &num) {
     return (num == sum);
 }
 
-int main(int argc, char **argv) {
+int mainFunc2_0(int argc, char **argv) {
     std::string path = "file_with_numbers.txt";
     std::ofstream stream;
     stream.open(path);
