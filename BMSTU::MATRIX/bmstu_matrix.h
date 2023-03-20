@@ -1,7 +1,5 @@
-#ifndef FIRST_BMSTU_MATRIX_H
-#define FIRST_BMSTU_MATRIX_H
+#pragma once
 
-#include "bmstu_dummy_vector/bmstu_dummy_vector.h"
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -16,7 +14,7 @@ namespace bmstu {
 
         matrix(size_t rows, size_t columns) : data_(rows * columns), rows_(rows), columns_(columns) {
             for (size_t i = 0; i < rows_; ++i) {
-                std::vector < T * > current_row(columns_);
+                std::vector<T *> current_row(columns_);
                 for (size_t j = 0; j < columns_; ++j) {
                     current_row[j] = &(data_[i * columns_ + j]);
                 }
@@ -24,12 +22,12 @@ namespace bmstu {
             }
         }
 
-        matrix(std::initializer_list <T> i_list, size_t rows, size_t columns) : rows_(rows), columns_(columns) {
+        matrix(std::initializer_list<T> i_list, size_t rows, size_t columns) : rows_(rows), columns_(columns) {
             if (i_list.size() == rows_ * columns_) {
                 data_.resize(rows_ * columns_);
                 std::move(i_list.begin(), i_list.end(), data_.data());
                 for (size_t i = 0; i < rows_; ++i) {
-                    std::vector < T * > current_row(columns_);
+                    std::vector<T *> current_row(columns_);
                     for (size_t j = 0; j < columns_; ++j) {
                         current_row[j] = &(data_[i * columns_ + j]);
                     }
@@ -69,12 +67,13 @@ namespace bmstu {
 //            return *this;
 //        }
 
-        friend std::ostream &operator<<(std::ostream &ovs, const bmstu::matrix<T> &obj) {
+        template<class S>
+        friend S &operator<<(S &ovs, const bmstu::matrix<T> &obj) {
             for (size_t i = 0; i < obj.rows_; ++i) {
                 for (size_t j = 0; j < obj.columns_; ++j) {
                     ovs << obj(i, j) << " ";
                 }
-                std::cout << "\r\n";
+                ovs << "\r\n";
             }
             return ovs;
         }
@@ -83,8 +82,8 @@ namespace bmstu {
             return representation_[i];
         }
 
-        std::vector <T> operator[](size_t i) const {
-            std::vector <T> result;
+        std::vector<T> operator[](size_t i) const {
+            std::vector<T> result;
             result.resize(columns_);
             for (size_t j = 0; j < columns_; ++j) {
                 result[j] = *representation_[i][j];
@@ -97,7 +96,7 @@ namespace bmstu {
                 throw std::logic_error("Matrix have determinant if (rows == colimns)!");
             } else {
                 T result = T();
-                std::vector <size_t> indexes(columns_);
+                std::vector<size_t> indexes(columns_);
                 int sign = 1;
                 for (size_t i = 0; i < columns_; ++i) {
                     indexes[i] = i;
@@ -169,12 +168,12 @@ namespace bmstu {
                 }
                 return result;
             } else {
-                throw std::logic_error("Wrong number of rows or columns!");
+                throw std::out_of_range("Wrong number of rows or columns!");
             }
         }
 
         void transpose() {
-            std::vector <T> new_data;
+            std::vector<T> new_data;
             for (size_t j = 0; j < columns_; ++j) {
                 for (size_t i = 0; i < rows_; ++i) {
                     new_data.push_back(data_[i * columns_ + j]);
@@ -186,7 +185,7 @@ namespace bmstu {
             representation_.clear();
 
             for (size_t i = 0; i < rows_; ++i) {
-                std::vector < T * > current_row(columns_);
+                std::vector<T *> current_row(columns_);
                 for (size_t j = 0; j < columns_; ++j) {
                     current_row[j] = &(data_[i * columns_ + j]);
                 }
@@ -219,19 +218,32 @@ namespace bmstu {
                 throw std::logic_error("The determinant of the matrix is 0. The reversed matrix does not exist!");
             } else {
                 matrix<double> result(rows_, columns_);
-                double det = this->det();
-                det = 1 / det;
+                matrix<double> adj = this->adj();
+                double det = 1/(this->det());
+
                 for (size_t i = 0; i < rows_; ++i) {
                     for (size_t j = 0; j < columns_; ++j) {
-                        result(i, j) = static_cast<double>((this->adj())(i, j)) * det;
+                        result(i,j) = adj(i,j)*det;
                     }
                 }
                 return result;
             }
         }
 
+//        size_t r_count() {
+//            return rows_;
+//        }
+//
+//        size_t c_count() {
+//            return columns_;
+//        }
+//
+//        size_t size() {
+//            return rows_*columns_;
+//        }
+
     private:
-        void permute(std::vector <size_t> &a, size_t pos, T &value, int &sign) {
+        void permute(std::vector<size_t> &a, size_t pos, T &value, int &sign) {
             if (pos == 1) {
                 T mrow = T(1);
                 for (size_t i = 0; i < columns_; ++i) {
@@ -256,11 +268,10 @@ namespace bmstu {
 //            representation_.clear();
 //        }
 
-        std::vector <T> data_;
-        std::vector <std::vector<T *>> representation_;
+        std::vector<T> data_;
+        std::vector<std::vector<T *>> representation_;
 
         size_t rows_;
         size_t columns_;
     };
 }
-#endif //FIRST_BMSTU_MATRIX_H
