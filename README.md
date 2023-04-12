@@ -33,7 +33,7 @@
 > 
 > bmstu_dummy_vectro_test.cpp - Файл с Google-тестами
 
-5. ДЗ BMSTU::MATRIX (В процессе)
+5. ДЗ BMSTU::MATRIX (Зачтено)
 > bmstu_matrix.h - Основной файл
 > 
-> Тесты пишутся
+> bmstu_matrix_test.cpp - Файл с Google-тестами
