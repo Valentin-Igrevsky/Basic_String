@@ -21,17 +21,19 @@
 2. Летучки II семестр
 > let_2.0.cpp - Летучка №0 (Тест на проф. пригодность) (Зачтено)
 > 
-> let_2_1.cpp - Летучка №1 (Ожидайте загрузки)
+> let_2_1.cpp - Летучка №1 (Зачтено)
 > 
-> let_2_2.cpp - Летучка №2 (В процессе)
+> let_2_2.cpp - Летучка №2 (Проверки не было)
 > 
-> let_2_3.cpp - Летучка №3 (В процессе)
+> let_2_3.cpp - Летучка №3 (Зачтено)
+> 
+> let_2_4.cpp - Летучка №4 (Проверки не было)
 
 3. ДЗ BMSTU::BASIC_STRING (Зачтено)
 > bmstu_basic_string.h - Основной файл
 > 
 > bmstu_basic_string_test.cpp - Файл с Google-тестами
-
+ 
 4. ДЗ BMSTU::DUMMY_VECTOR (Зачтено)
 > bmstu_dummy_vector.h - Основно файл
 > 
@@ -43,6 +45,12 @@
 > bmstu_matrix.h - Основной файл
 > 
 > bmstu_matrix_test.cpp - Файл с Google-тестами
-6. ДЗ OPTIONAL (В процессе)
-7. ДЗ BMSTU::VECTOR (В процессе)
-8. ДЗ BMSTU::LIST (В процессе)
+6. ДЗ BMSTU::OPTIONAL (Зачтено)
+> bmstu_optional.h - Основной файл
+>
+> bmstu_optional_test.cpp - Файл с Google-тестами
+7. ДЗ BMSTU::LIST (Зачтено)
+> bmstu_list.h - Основной файл
+>
+> bmstu_list_test.cpp - Файл с Google-тестами
+8. ДЗ BMSTU::VECTOR (Ищите в других репозиториях)
